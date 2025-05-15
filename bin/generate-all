@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repositories=$(gh repo list --visibility public --limit "${REPOSITORY_LIMIT}" --source --json name | jq -r '.[].name')
+
+for repository in ${repositories}; do
+  REPOSITORY_NAME=${repository} $(dirname ${BASH_SOURCE[0]})/generate
+done

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p "${OUT_PATH}/${REPOSITORY_NAME}"
+
+echo "::notice:: Generating ${BASE_GOMOD_URL}/${REPOSITORY_NAME}"
+cat <<-EOF > "${OUT_PATH}/${REPOSITORY_NAME}/index.html"
+<html>
+    <head>
+        <meta name="go-import" content="${BASE_GOMOD_URL}/${REPOSITORY_NAME} git ${BASE_FORGE_URL}/${REPOSITORY_NAME}">
+        <meta http-equiv="refresh" content="0;URL='${BASE_FORGE_URL}/${REPOSITORY_NAME}'">
+    </head>
+    <body>
+        Redirecting you to the <a href="${BASE_FORGE_URL}/${REPOSITORY_NAME}">project page</a>...
+    </body>
+</html>
+EOF
