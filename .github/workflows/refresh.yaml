@@ -19,6 +19,10 @@ concurrency:
 
 jobs:
   refresh:
+    # Sometimes there is a job scheduling problem on GitHub's end.
+    # If that happens, just fail the current one and let the next
+    # scheduled execution picks it up.
+    timeout-minutes: 3
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
